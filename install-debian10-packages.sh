@@ -1,14 +1,19 @@
 #/bin/bash
 
 . apps_debian10.list
-APTUPIN="apt update && apt install -y"
+
+# Common apt command
+apt-update-install () {
+  packagelist="$@"
+  apt-get update && apt-get install -y $packagelist
+}
 
 # Install app from apps_debian10.list
 install-apps () {
   echo "Install the followig apps: $APPS"
   echo -n "y/[n]: " && read CHOICE
   if [[ ${CHOICE,,} = "y" ]] ; then
-    apt update && apt install -y $APPS |& tee -a /tmp/apt-install-packages-$(date +%Y%m%dT%H%M).log
+    apt-update-install $APPS |& tee -a /tmp/apt-install-packages-$(date +%Y%m%dT%H%M).log
   else
     echo "ABORTING!"
     return 1
@@ -20,7 +25,7 @@ install-signal () {
   if [ ! signal-desktop ] ; then
     curl -s https://updates.signal.org/desktop/apt/keys.asc | apt-key add -
     echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
-    apt update && apt install -y signal-desktop
+    apt-update-install signal-desktop
   else
     echo "signal-desktop is already installed"
   fi
@@ -36,7 +41,7 @@ echo "## VIRTUALBOX
 ## That’s why the repository is pointed to bionic.
 deb https://download.virtualbox.org/virtualbox/debian bionic contrib
 " | tee /etc/apt/sources.list.d/virtualbox.list
-  apt update && apt install -y virtuaalbox-6.1
+  apt-update-install virtuaalbox-6.1
   else
     echo "VirtualBox is already installed"
   fi
@@ -46,7 +51,7 @@ deb https://download.virtualbox.org/virtualbox/debian bionic contrib
 install-wifi-driver-intel () {
   if ! grep -q "buster main non-free" /etc/apt/sources.list ; then
     sed -i 's/deb http://deb.debian.org/debian/ buster main/deb http://deb.debian.org/debian/ buster main non-free/g' /etc/apt/sources.list
-    apt update && apt install -y firmware-iwlwifi
+    apt-update-install firmware-iwlwifi
   else
     echo "The intel wifi drivers are already installed"
   fi
