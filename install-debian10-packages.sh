@@ -22,7 +22,7 @@ install-apps () {
 
 # Install signal for the desktop
 install-signal () {
-  if [ ! signal-desktop ] ; then
+  if [ ! which signal-desktop ] ; then
     curl -s https://updates.signal.org/desktop/apt/keys.asc | apt-key add -
     echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | tee /etc/apt/sources.list.d/signal-xenial.list
     apt-update-install signal-desktop
