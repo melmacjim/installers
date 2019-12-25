@@ -1,6 +1,6 @@
 #/bin/bash
 
-. apps_debian10.list
+. apps-debian10.list
 
 # Common apt command
 apt-update-install () {
