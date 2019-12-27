@@ -44,6 +44,7 @@ sipcalc
 tshark
 vpnc
 wireshark
+x2goclient
 "
 
 LIST_APPS_ANDROID="
