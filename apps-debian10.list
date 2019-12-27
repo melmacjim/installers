@@ -1,5 +1,6 @@
 LIST_APPS_BASIC="
 acpi
+arduino
 audacity
 chirp
 chromium
@@ -17,6 +18,7 @@ screen
 seahorse
 smartmontools
 snapd
+texmaker
 usbtop
 vim
 vlc
