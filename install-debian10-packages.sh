@@ -57,6 +57,16 @@ install-wifi-driver-intel () {
   fi
 }
 
+install-youtube-dl () {
+  if [ ! -f /usr/local/bin/youtube-dl ] ; then
+    ## source: https://ytdl-org.github.io/youtube-dl/download.html
+    curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+    chmod a+rx /usr/local/bin/youtube-dl
+  else
+    echo "youtube-dl is already installed"
+  fi
+}
+
 # Install old network interface names (eth0, wlan0, ...)
 install-iface-old-names () {
   if ! grep -q "net.ifnames=0 biosdevname=0" /etc/default/grub ; then
@@ -76,6 +86,7 @@ $0 -a | --install-android-apps
 $0 -s | --install-signal
 $0 -v | --install-virtualbox
 $0 -w | --install-driver-wifi
+$0 --install-youtube-dl
 $0 --install-old-iface-names
 
 " ; }
@@ -91,6 +102,7 @@ else
       -s|--install-signal) install-signal ;;
       -v|--install-virtualbox) install-virtualbox ;;
       -w|--install-driver-wifi) install-wifi-driver-intel ;;
+      --install-youtube-dl) install-youtube-dl ;;
       --install-old-iface-names) install-iface-old-names ;;
       *) help_message ; break ;;
     esac
