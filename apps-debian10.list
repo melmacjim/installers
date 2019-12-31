@@ -27,7 +27,6 @@ usbtop
 vim
 vlc
 xfce4-terminal
-youtube-dl
 "
 
 LIST_APPS_NETWORKING="
