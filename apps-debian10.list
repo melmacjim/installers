@@ -39,6 +39,7 @@ linssid
 net-tools
 netdiscover
 network-manager-openvpn-gnome
+nfs-common
 ngrep
 nmap
 sshfs
