@@ -60,8 +60,10 @@ install-wifi-driver-intel () {
 install-youtube-dl () {
   if [ ! -f /usr/local/bin/youtube-dl ] ; then
     ## source: https://ytdl-org.github.io/youtube-dl/download.html
-    curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-    chmod a+rx /usr/local/bin/youtube-dl
+    curl -s -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl \
+      && chmod a+rx /usr/local/bin/youtube-dl \
+      && echo "youtube-dl is now installed! :)" \
+      || echo "Something went wrong! :("
   else
     echo "youtube-dl is already installed"
   fi
