@@ -7,7 +7,7 @@ else
     cd /tmp
     rm slack-desktop-*.deb*
     wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.2-amd64.deb
-    apt update && apt install -y ./slack-desktop-*.deb
+    apt-get update && apt-get install -y ./slack-desktop-*.deb
   else
     echo "Sorry but this script only works on Debain based distros."
   fi
