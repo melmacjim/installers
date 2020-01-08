@@ -1,6 +1,5 @@
 LIST_APPS_BASIC="
 acpi
-arduino
 audacity
 chirp
 chromium
@@ -15,7 +14,6 @@ kdenlive
 keepassx
 keepass2
 qrencode
-qreator
 rsync
 screen
 seahorse
