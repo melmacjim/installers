@@ -13,19 +13,19 @@ run_checks () {
 update_upgrade () {
   run_checks
   printf "\nCHECKING FOR SOFTWARE UPDATES ...\n\n"
-  apt update && apt upgrade ${2:+$2}
+  apt update && apt upgrade
 }
 
 update_dist_upgrade () {
   run_checks
   printf "\nCHECKING FOR KERNEL UPDATES ...\n\n"
-  apt update && apt dist-upgrade ${2:+$2}
+  apt update && apt dist-upgrade
 }
 
 update_autoremove () {
   run_checks
   printf "\nCHECKING FOR REMOVABLE SOFTWARE ...\n\n"
-  apt update && apt autoremove ${2:+$2}
+  apt update && apt autoremove
 }
 
 if [ -z "$1" ] ; then
@@ -33,9 +33,9 @@ if [ -z "$1" ] ; then
 else
   for input_options ; do
     case "$input_options" in
-      -u|--update) update_upgrade $@ ;;
-      -k|--kernel) update_dist_upgrade $@ ;;
-      -r|--autoremove) update_autoremove $@ ;;
+      -u|--update) update_upgrade ;;
+      -k|--kernel) update_dist_upgrade ;;
+      -r|--autoremove) update_autoremove ;;
     esac
   done
 fi
