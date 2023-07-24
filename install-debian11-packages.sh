@@ -1,18 +1,23 @@
 #!/bin/bash
 
+set -e
+
 # exit if not root (or sudo)
 if [ "$(id -u)" != "0" ] ; then 
   echo -e "\nplease execute this script as root\n"
   exit 1
 fi
 
-set -e
-
 USERNAME=""
 if [ "$USERNAME" == "" ] ; then
   echo -n "Please enter the username: " && read USERNAME
 fi
-echo "username is set to \"$USERNAME\" "
+if id $USERNAME ; then 
+  echo "username is set to \"$USERNAME\" "
+else
+  echo "the user \"$USERNAME\" wasn't found"
+  exit 1
+fi
 
 PKG_LIST="
 adb
