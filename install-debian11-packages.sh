@@ -72,6 +72,7 @@ PKG_LIST_EXTRAS="
 audacity
 freecad
 fritzing
+gqrx-sdr
 kdenlive
 kicad
 openscad
