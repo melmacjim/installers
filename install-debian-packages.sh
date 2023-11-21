@@ -88,8 +88,7 @@ wavemon
 install-package-list () {
   apt update
   apt install -y $(echo -n $PKG_LIST)
-  usermod -aG libvirt $USERNAME
-  usermod -aG dialout $USERNAME
+  usermod -aG dialout,libvirt $USERNAME
 }
 
 # install from $PKG_LIST_EXTRAS
