@@ -69,6 +69,8 @@ yubioath-desktop
 "
 
 PKG_LIST_EXTRAS="
+arduino
+arduino-mk
 audacity
 freecad
 fritzing
