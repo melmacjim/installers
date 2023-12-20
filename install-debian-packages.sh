@@ -53,11 +53,13 @@ yubikey-luks
 yubikey-manager
 yubikey-personalization-gui
 yubioath-desktop
+zfsutils-linux
 "
 
 PKG_LIST_NET="
 curl
 hping3
+irssi
 net-tools
 network-manager-openvpn
 network-manager-openvpn-gnome
