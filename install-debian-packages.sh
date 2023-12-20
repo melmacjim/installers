@@ -23,46 +23,31 @@ INSTALL_DIR="/home/$USERNAME/bin"
 
 PKG_LIST="
 adb
+acpi
 ansible
 apt-transport-https
 basket
-bluez-hcidump
-chirp
 clamav
 clamav-daemon
 cpu-checker
-curl
 fastboot
 git
-hping3
 htop
 iat
 iotop
 jq
 keepassxc
 libimage-exiftool-perl
-net-tools
-network-manager-openvpn
-network-manager-openvpn-gnome
-nfs-common
-nmap
 python3-pip
 qrencode
 screen
 smartmontools
 sipcalc
 silversearcher-ag
-sshfs
 stellarium
-tcpdump
-tshark
 vim
 virt-manager
 vlc
-wget
-whois
-wireshark
-x2goclient
 ykls
 yubikey-luks
 yubikey-manager
@@ -70,26 +55,51 @@ yubikey-personalization-gui
 yubioath-desktop
 "
 
+PKG_LIST_NET="
+curl
+hping3
+net-tools
+network-manager-openvpn
+network-manager-openvpn-gnome
+nfs-common
+nmap
+sshfs
+tcpdump
+tshark
+wget
+whois
+wireshark
+x2goclient
+"
+
 PKG_LIST_EXTRAS="
 audacity
 freecad
 fritzing
-gqrx-sdr
 kdenlive
 kicad
 openscad
 "
 
-PKG_LIST_LAPTOP="
-acpi
+# typically only for laptops or mobile systems
+PKG_LIST_WIRELESS="
+aircrack-ng
+airgraph-ng
+bluez-hcidump
+chirp
 firmware-iwlwifi
+firmware-misc-nonfree
+gqrx-sdr
+iw
+mdk4
 wavemon
+wifite
 "
 
 # install from $PKG_LIST
 install-package-list () {
   apt update
-  apt install -y $(echo -n $PKG_LIST)
+  apt install -y $(echo -n $PKG_LIST) $(echo -n $PKG_LIST_NET)
   usermod -aG dialout,libvirt $USERNAME
 }
 
@@ -103,7 +113,7 @@ install-extras-package-list () {
 install-laptop-package-list () {
   if upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep native-path | grep -q BAT0 ; then
     apt update
-    apt install -y $(echo -n $PKG_LIST_LAPTOP)
+    apt install -y $(echo -n $PKG_LIST_WIRELESS)
   else
     echo "This system is NOT a laptop (or at least it doesn't have a battery)"
   fi
