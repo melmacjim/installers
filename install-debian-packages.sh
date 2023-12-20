@@ -19,6 +19,8 @@ else
   exit 1
 fi
 
+INSTALL_DIR="/home/$USERNAME/bin"
+
 PKG_LIST="
 adb
 ansible
@@ -69,8 +71,6 @@ yubioath-desktop
 "
 
 PKG_LIST_EXTRAS="
-arduino
-arduino-mk
 audacity
 freecad
 fritzing
@@ -156,7 +156,6 @@ install-kismet () {
 
 install-youtube-dl () {
   if [ ! -f /usr/local/bin/youtube-dl ] ; then
-    INSTALL_DIR="/home/$USERNAME/bin"
     mkdir -p $INSTALL_DIR
     ## source: https://ytdl-org.github.io/youtube-dl/download.html
     curl -s -L https://yt-dl.org/downloads/latest/youtube-dl -o $INSTALL_DIR/youtube-dl \
