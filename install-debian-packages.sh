@@ -96,7 +96,7 @@ wavemon
 wifite
 "
 
-# install from $PKG_LIST
+# install from $PKG_LIST and $PKG_LIST_NET
 install-package-list () {
   apt update
   apt install -y $(echo -n $PKG_LIST) $(echo -n $PKG_LIST_NET)
