@@ -83,25 +83,27 @@ kicad
 openscad
 "
 
-# typically only for laptops or mobile systems
-PKG_LIST_WIRELESS="
+PKG_LIST_WIFI="
 aircrack-ng
 airgraph-ng
 bluez-hcidump
-chirp
 firmware-iwlwifi
 firmware-misc-nonfree
-gqrx-sdr
 iw
 mdk4
 wavemon
 wifite
 "
 
+PKG_LIST_SDR="
+chirp
+gqrx-sdr
+"
+
 # install from $PKG_LIST and $PKG_LIST_NET
 install-package-list () {
   apt update
-  apt install -y $(echo -n $PKG_LIST) $(echo -n $PKG_LIST_NET)
+  apt install -y $(echo -n $PKG_LIST) $(echo -n $PKG_LIST_NET) $(echo -n $PKG_LIST_SDR)
   usermod -aG dialout,libvirt $USERNAME
 }
 
@@ -115,7 +117,7 @@ install-extras-package-list () {
 install-laptop-package-list () {
   if upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep native-path | grep -q BAT0 ; then
     apt update
-    apt install -y $(echo -n $PKG_LIST_WIRELESS)
+    apt install -y $(echo -n $PKG_LIST_WIFI)
   else
     echo "This system is NOT a laptop (or at least it doesn't have a battery)"
   fi
