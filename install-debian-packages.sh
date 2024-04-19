@@ -181,7 +181,7 @@ install-youtube-dl () {
   fi
 }
 
-# install spotify (music app) pn debian 11
+# install spotify (music app) on debian 11
 install-spotify () {
   curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | apt-key add -
   echo "deb http://repository.spotify.com stable non-free" \
@@ -190,6 +190,18 @@ install-spotify () {
   apt install -y spotify-client
 }
 
+# install docker
+install-docker () {
+  curl -fsSL https://download.docker.com/linux/debian/gpg -o /usr/share/keyrings/docker.asc
+  chmod a+r /usr/share/keyrings/docker.asc
+
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.asc] https://download.docker.com/linux/debian \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list
+  apt update
+  apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+}
+
+# install packages from python's pip repo
 install-pip-packages () {
   su - $USERNAME -c "pip install speedtest-cli yt-dlp"
 }
@@ -225,6 +237,7 @@ make-old-school-net-ifaces () {
 #install-kismet
 #install-youtube-dl
 #install-spotify
+install-docker
 #install-pip-packages
 #install-other-packages
 #make-old-school-net-ifaces
