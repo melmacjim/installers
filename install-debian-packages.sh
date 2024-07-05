@@ -27,10 +27,12 @@ acpi
 ansible
 apt-transport-https
 basket
+bless
 clamav
 clamav-daemon
 cpu-checker
 fastboot
+ghex
 git
 htop
 iat
