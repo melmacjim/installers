@@ -239,9 +239,8 @@ make-old-school-net-ifaces () {
 #install-kismet
 #install-youtube-dl
 #install-spotify
-install-docker
+#install-docker
 #install-pip-packages
 #install-other-packages
 #make-old-school-net-ifaces
-
 
