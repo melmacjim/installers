@@ -49,6 +49,7 @@ silversearcher-ag
 stellarium
 vim
 virt-manager
+virtualenv
 vlc
 ykls
 yubikey-luks
