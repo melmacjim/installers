@@ -62,6 +62,7 @@ zfsutils-linux
 PKG_LIST_NET="
 curl
 hping3
+iftop
 irssi
 net-tools
 network-manager-openvpn
