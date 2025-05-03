@@ -1,0 +1,16 @@
+curl
+hping3
+iftop
+irssi
+net-tools
+network-manager-openvpn
+network-manager-openvpn-gnome
+nfs-common
+nmap
+sshfs
+tcpdump
+tshark
+wget
+whois
+wireshark
+x2goclient

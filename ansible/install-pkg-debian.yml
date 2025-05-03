@@ -1,0 +1,83 @@
+---
+## Usage:
+## > sudo ansible-playbook install-pkg-debian.yml -e "username=<your_main_usersname>" [--tags (common|network|wifi|sdr|extras)]
+
+- name: "Install Stuff"
+  hosts: localhost
+  become: yes
+  vars:
+    default_username: "{{ username }}"
+    pkg_debian_common: pkg-debian-common.list
+    pkg_debian_network: pkg-debian-network.list
+    pkg_debian_wifi: pkg-debian-wifi.list
+    pkg_debian_sdr: pkg-debian-sdr.list
+    pkg_debian_extras: pkg-debian-extras.list
+
+  tasks:
+  - name: Update Repository cache (deb)
+    ansible.builtin.apt:
+      update_cache: true
+      cache_valid_time: 3600
+      force_apt_get: true
+    when: ansible_facts['os_family']|lower == 'debian'
+
+  - name: Run system update (deb)
+    ansible.builtin.apt:
+      update_cache: true
+      upgrade: dist
+      cache_valid_time: 3600
+      force_apt_get: true
+    when: ansible_facts['os_family']|lower == 'debian'
+   
+  - name: Install the software listed in {{ pkg_debian_common }}
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: latest
+    with_lines: cat {{ pkg_debian_common }}
+    when: ansible_facts['os_family']|lower == 'debian'
+    tags: common
+
+  - name: Install the software listed in {{ pkg_debian_network }}
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: latest
+    with_lines: cat {{ pkg_debian_network }}
+    when: ansible_facts['os_family']|lower == 'debian'
+    tags: network
+
+  - name: Install the software listed in {{ pkg_debian_wifi }}
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: latest
+    with_lines: cat {{ pkg_debian_wifi }}
+    when: ansible_facts['os_family']|lower == 'debian'
+    tags: wifi
+
+  - name: Install the software listed in {{ pkg_debian_sdr }}
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: latest
+    with_lines: cat {{ pkg_debian_sdr }}
+    when: ansible_facts['os_family']|lower == 'debian'
+    tags: sdr
+
+  - name: Install the software listed in {{ pkg_debian_extras }}
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: latest
+    with_lines: cat {{ pkg_debian_extras }}
+    when: ansible_facts['os_family']|lower == 'debian'
+    tags: extras
+
+  - name: Add the user {{ default_username }} to the dialout group
+    ansible.builtin.user:
+      name: "{{ default_username }}"
+      group: "{{ item }}"
+    with_items:
+      - dialout
+      - libvirt
+    tags:
+      - common
+      - network
+      - sdr
+
