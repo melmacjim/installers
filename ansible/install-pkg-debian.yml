@@ -69,10 +69,11 @@
     when: ansible_facts['os_family']|lower == 'debian'
     tags: extras
 
-  - name: Add the user {{ default_username }} to the dialout group
+  - name: Add {{ default_username }} to the dialout and libvirt groups
     ansible.builtin.user:
       name: "{{ default_username }}"
       group: "{{ item }}"
+      append: true
     with_items:
       - dialout
       - libvirt
@@ -80,4 +81,3 @@
       - common
       - network
       - sdr
-
