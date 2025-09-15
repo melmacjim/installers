@@ -2,7 +2,6 @@ adb
 ansible
 apt-transport-https
 basket
-bless
 cpu-checker
 fastboot
 ghex
@@ -29,6 +28,4 @@ vlc
 ykls
 yubikey-luks
 yubikey-manager
-yubikey-personalization-gui
 yubioath-desktop
-zfsutils-linux
