@@ -21,88 +21,11 @@ fi
 
 INSTALL_DIR="/home/$USERNAME/bin"
 
-PKG_LIST="
-adb
-acpi
-ansible
-apt-transport-https
-basket
-bless
-clamav
-clamav-daemon
-cpu-checker
-fastboot
-ghex
-git
-htop
-iat
-iotop
-jq
-keepassxc
-libimage-exiftool-perl
-python3-pip
-qrencode
-screen
-smartmontools
-sipcalc
-silversearcher-ag
-stellarium
-vim
-virt-manager
-virtualenv
-vlc
-ykls
-yubikey-luks
-yubikey-manager
-yubikey-personalization-gui
-yubioath-desktop
-zfsutils-linux
-"
-
-PKG_LIST_NET="
-curl
-hping3
-iftop
-irssi
-net-tools
-network-manager-openvpn
-network-manager-openvpn-gnome
-nfs-common
-nmap
-sshfs
-tcpdump
-tshark
-wget
-whois
-wireshark
-x2goclient
-"
-
-PKG_LIST_EXTRAS="
-audacity
-freecad
-fritzing
-kdenlive
-kicad
-openscad
-"
-
-PKG_LIST_WIFI="
-aircrack-ng
-airgraph-ng
-bluez-hcidump
-firmware-iwlwifi
-firmware-misc-nonfree
-iw
-mdk4
-wavemon
-wifite
-"
-
-PKG_LIST_SDR="
-chirp
-gqrx-sdr
-"
+PKG_LIST="$(cat debian-common-pkg.list)"
+PKG_LIST_NET="$(cat debian-network-pkg.list)"
+PKG_LIST_EXTRAS="$(cat debian-extras-pkg.list)"
+PKG_LIST_WIFI="$(cat debian-wifi-pkg.list)"
+PKG_LIST_SDR="$(cat debian-sdr-pkg.list)"
 
 # install from $PKG_LIST and $PKG_LIST_NET
 install-package-list () {
