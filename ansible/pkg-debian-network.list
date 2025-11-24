@@ -2,6 +2,7 @@ curl
 hping3
 iftop
 irssi
+mtr-tiny
 net-tools
 network-manager-openvpn
 network-manager-openvpn-gnome
