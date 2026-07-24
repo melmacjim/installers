@@ -33,7 +33,7 @@
     reboot
     ```
 
-6. update flatpak if installed (from uid=1000; not as root)
+6. update any flatpaks (from uid=1000; not as root)
     ```
     flatpak update
     ```
